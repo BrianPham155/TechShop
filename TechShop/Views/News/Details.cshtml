@@ -1,0 +1,24 @@
+﻿@model TechShop.Models.TinTuc
+
+@{
+    ViewData["Title"] = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="bg-light">
+    <div class="container pb-5">
+        <div class="row">
+            <div class="col-lg-12 mt-5">
+                <div class="card mb-3">
+                    <img class="card-img img-fluid mx-auto d-block" src="@Url.Content($"~/images/news/{Model.Thumb}")" alt="Card image cap" id="product-detail">
+                    <div class="card-body">
+                        <h1>@Model.Title</h1>
+                        <h2 class="h3">Tác giả: @Model.Author</h2>
+                        <h6 class="h2">Nội dung:</h6>
+                        <p>@Model.Contents</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

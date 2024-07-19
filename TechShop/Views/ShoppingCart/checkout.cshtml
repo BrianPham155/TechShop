@@ -1,0 +1,101 @@
+﻿@model TechShop.Models.CheckoutModel
+@{
+    ViewData["Title"] = "Xác Nhận Thanh Toán";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var cartItems = ViewBag.CartItems as List<TechShop.ModelViews.CartItem>;
+    var totalMoney = ViewBag.TotalMoney;
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="mb-4">Sản phẩm trong giỏ hàng</h1>
+
+            <!-- Danh sách sản phẩm trong giỏ hàng -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    @if (cartItems != null && cartItems.Count > 0)
+                    {
+                        foreach (var item in cartItems)
+                        {
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <img src="~/images/product/@item.sanpham.Thumb" class="img-thumbnail" style="width: 100%; max-width: 80px; height: auto;" alt="@item.sanpham.ProductName">
+                                </div>
+                                <div class="col-md-9">
+                                    <h5>@item.sanpham.ProductName</h5>
+                                    <p>Số lượng: @item.Quantity</p>
+                                    <p>Giá: @item.sanpham.Price.Value.ToString("#,##0") VND</p>
+                                    <p class="mb-0"><strong>Tổng tiền:</strong> @item.TotalMoney.ToString("#,##0") VND</p>
+                                </div>
+                            </div>
+                            <hr />
+                        }
+                        <div class="row">
+                            <div class="col-md-9">
+                                <h5 class="text-uppercase">Tổng đơn hàng</h5>
+                            </div>
+                            <div class="col-md-3">
+                                <h5 id="total-money">@totalMoney?.ToString("#,##0") VND</h5>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <p>Giỏ hàng của bạn đang trống.</p>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <h1 class="mb-4">Xác Nhận Thanh Toán</h1>
+
+            <!-- Form xác nhận thanh toán -->
+            <form asp-action="Checkout" method="post">
+                <div class="mb-3">
+                    <label asp-for="FullName" class="form-label">Họ và tên</label>
+                    <input asp-for="FullName" class="form-control" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <input asp-for="Email" class="form-control" type="email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Phone" class="form-label">Số điện thoại</label>
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Address" class="form-label">Địa chỉ</label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="District" class="form-label">Quận/Huyện</label>
+                    <input asp-for="District" class="form-control" />
+                    <span asp-validation-for="District" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Ward" class="form-label">Phường/Xã</label>
+                    <input asp-for="Ward" class="form-control" />
+                    <span asp-validation-for="Ward" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Province" class="form-label">Tỉnh/Thành phố</label>
+                    <input asp-for="Province" class="form-control" />
+                    <span asp-validation-for="Province" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Xác Nhận Thanh Toán</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Scripts cần thiết có thể được thêm vào đây nếu cần
+    </script>
+}

@@ -1,0 +1,36 @@
+﻿@model TechShop.Models.Category
+
+@{
+    ViewData["Title"] = "Tạo danh mục";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row m-0">
+    <div class="page-header float-left">
+        <div class="page-title">
+            <ol class="breadcrumb text-right">
+                <li><a asp-area="Admin" asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                <li><a asp-area="Admin" asp-controller="AdminCategories" asp-action="Index">Danh sách danh mục</a></li>
+                <li class="active">Thêm danh mục</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<strong class="card-title">Thêm danh mục</strong>
+<div class="card">
+    <div class="card-body card-block">
+        <form asp-controller="AdminCategories" asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group"><label asp-for="CatName" class="form-control-label"></label><input asp-for="CatName" class="form-control" /></div>
+            <span asp-validation-for="CatName" class="text-danger"></span>
+            <div class="form-group form-check"><label class="form-check-label"><input class="form-check-input" asp-for="Published" /> @Html.DisplayNameFor(model => model.Published)</label></div>
+            <div class="form-group"><label asp-for="Title" class="form-control-label"></label><input asp-for="Title" class="form-control" /></div>
+            <span asp-validation-for="Title" class="text-danger"></span>
+            <div class="form-actions form-group"><button type="submit" value="Save" class="btn btn-primary">Thêm mới</button></div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,71 @@
+﻿@model TechShop.Models.Order
+
+@{
+    ViewData["Title"] = "Xóa đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row m-0">
+    <div class="page-header float-left">
+        <div class="page-title">
+            <ol class="breadcrumb text-right">
+                <li><a asp-area="Admin" asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                <li><a asp-area="Admin" asp-controller="AdminOrders" asp-action="Index">Order List</a></li>
+                <li class="active">Xóa đơn hàng</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<div class="card-body">
+    <strong class="card-title">Delete Order</strong>
+    <table id="bootstrap-data-table" class="table">
+        <tbody>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.OrderDate)</td>
+                <td>@Html.DisplayFor(model => model.OrderDate)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.ShipDate)</td>
+                <td>@Html.DisplayFor(model => model.ShipDate)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Deleted)</td>
+                <td>@Html.DisplayFor(model => model.Deleted)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Paid)</td>
+                <td>@Html.DisplayFor(model => model.Paid)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.PaymentDate)</td>
+                <td>@Html.DisplayFor(model => model.PaymentDate)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.PaymentId)</td>
+                <td>@Html.DisplayFor(model => model.PaymentId)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.TotalMoney)</td>
+                <td>@Html.DisplayFor(model => model.TotalMoney)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Customer)</td>
+                <td>@Html.DisplayFor(model => model.Customer.CustomerId)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.TracsactStatus)</td>
+                <td>@Html.DisplayFor(model => model.TracsactStatus.TransactStatusId)</td>
+            </tr>
+            <tr>
+                <td>Confirm Deletion</td>
+                <td>
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="OrderId" />
+                        <input type="submit" value="Delete" class="btn btn-danger" />
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a asp-action="Index">Back to List</a>
+</div>

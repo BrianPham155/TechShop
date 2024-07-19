@@ -1,0 +1,63 @@
+﻿@model TechShop.Models.Account
+
+@{
+    ViewData["Title"] = "Thông tin tài khoản";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row m-0">
+    <div class="page-header float-left">
+        <div class="page-title">
+            <ol class="breadcrumb text-right">
+                <li><a asp-area="Admin" asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                <li><a asp-area="Admin" asp-controller="AdminAccounts" asp-action="Index">Danh sách tài khoản</a></li>
+                <li class="active">Thông tin tài khoản</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<div class="card-body">
+    <strong class="card-title">Thông tin tài khoản</strong>
+    <table id="bootstrap-data-table" class="table">
+        <tbody>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Phone)</td>
+                <td>@Html.DisplayFor(model => model.Phone)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Email)</td>
+                <td>@Html.DisplayFor(model => model.Email)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Password)</td>
+                <td>@Html.DisplayFor(model => model.Password)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Salt)</td>
+                <td>@Html.DisplayFor(model => model.Salt)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Active)</td>
+                <td>@Html.DisplayFor(model => model.Active)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.FullName)</td>
+                <td>@Html.DisplayFor(model => model.FullName)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.LastLogin)</td>
+                <td>@Html.DisplayFor(model => model.LastLogin)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.CreateDate)</td>
+                <td>@Html.DisplayFor(model => model.CreateDate)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Role)</td>
+                <td>@Html.DisplayFor(model => model.Role.RoleId)</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

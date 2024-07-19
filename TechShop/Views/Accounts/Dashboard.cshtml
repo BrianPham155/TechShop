@@ -1,0 +1,193 @@
+﻿@model TechShop.Models.Customer
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var customer = ViewBag.Customer as TechShop.Models.Customer;
+    var orders = ViewBag.DonHang as List<TechShop.Models.Order>;
+}
+<style>
+
+
+    .breadcrumb-area {
+        background-image: url('assets/images/breadcrumb/bg/1-1-1920x373.jpg');
+        background-size: cover;
+        background-position: center;
+        padding: 30px 0;
+        color: white;
+        text-align: center;
+    }
+
+    .breadcrumb-item h2 {
+        font-size: 36px;
+        margin-bottom: 10px;
+    }
+
+    .breadcrumb-item ul {
+        list-style: none;
+        padding: 0;
+        display: inline-block;
+    }
+
+        .breadcrumb-item ul li {
+            display: inline;
+            margin-right: 5px;
+        }
+
+            .breadcrumb-item ul li a {
+                color: white;
+                text-decoration: none;
+            }
+
+                .breadcrumb-item ul li a:hover {
+                    text-decoration: underline;
+                }
+
+    .account-page-area {
+        padding: 50px 0;
+        background-color: #f9f9f9;
+    }
+
+    .nav.myaccount-tab-trigger {
+        background: #fff;
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+        .nav.myaccount-tab-trigger .nav-item .nav-link {
+            color: #333;
+            background: #fff;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+            .nav.myaccount-tab-trigger .nav-item .nav-link:hover,
+            .nav.myaccount-tab-trigger .nav-item .nav-link.active {
+                background-color: #007bff;
+                color: white;
+                border-color: #007bff;
+            }
+
+    .tab-content .tab-pane {
+        background: #fff;
+        padding: 30px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .myaccount-dashboard p,
+    .myaccount-orders h4,
+    .myaccount-address p,
+    .myaccount-address h4 {
+        margin: 20px 0;
+    }
+
+    .small-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    address {
+        font-style: normal;
+        line-height: 1.5;
+    }
+
+    .breadcrumb-item h2 {
+        font-size: 28px;
+    }
+
+    .breadcrumb-item ul li {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .nav.myaccount-tab-trigger {
+        padding: 15px;
+    }
+
+        .nav.myaccount-tab-trigger .nav-item .nav-link {
+            padding: 10px;
+            font-size: 14px;
+        }
+
+    .tab-content .tab-pane {
+        padding: 20px;
+    }
+</style>
+<div class="account-page-area section-space-y-axis-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <ul class="nav myaccount-tab-trigger" id="account-page-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="account-dashboard-tab" data-bs-toggle="tab" href="#account-dashboard" role="tab" aria-controls="account-dashboard" aria-selected="true">Thông tin tài khoản</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="account-orders-tab" data-bs-toggle="tab" href="#account-orders" role="tab" aria-controls="account-orders" aria-selected="false">Danh sách đơn hàng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="account-details-tab" data-bs-toggle="tab" href="#account-details" role="tab" aria-controls="account-details" aria-selected="false">Thay đổi mật khẩu</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-9">
+                <div class="tab-content myaccount-tab-content" id="account-page-tab-content">
+                    <div class="tab-pane fade show active" id="account-dashboard" role="tabpanel" aria-labelledby="account-dashboard-tab">
+                        <div class="myaccount-dashboard">
+                            <p>Xin chào, <b>@Model.FullName</b></p>
+                            <p>Email: @Model.Email</p>
+                            <p>Số điện thoại: @Model.Phone</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="account-orders" role="tabpanel" aria-labelledby="account-orders-tab">
+                        <div class="myaccount-orders">
+                            <h4 class="small-title">DANH SÁCH ĐƠN HÀNG</h4>
+                            @if (orders != null && orders.Count > 0)
+                            {
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Mã đơn hàng</th>
+                                            <th scope="col">Ngày đặt</th>
+                                            <th scope="col">Tổng tiền</th>
+                                            <th scope="col">Trạng thái</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var order in orders)
+                                        {
+                                            <tr>
+                                                <td>@order.OrderId</td>
+                                                <td>@(order.OrderDate.HasValue ? order.OrderDate.Value.ToString("dd/MM/yyyy") : "")</td>
+
+                                                <td>@(order.TotalMoney.HasValue ? $"{order.TotalMoney:#,##0} VND" : "")</td>
+
+                                                <td>@order.TracsactStatus</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                            else
+                            {
+                                <p>Hiện tại bạn chưa có đơn hàng nào.</p>
+                            }
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="account-details" role="tabpanel" aria-labelledby="account-details-tab">
+                        <div class="myaccount-details">
+                            <h4 class="small-title">THAY ĐỔI MẬT KHẨU</h4>
+                            @await Html.PartialAsync("_ChangePasswordPartialView", new TechShop.ModelViews.ChangePasswordViewModel())
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,95 @@
+﻿@model TechShop.Models.Product
+
+@{
+    ViewData["Title"] = "Xóa sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row m-0">
+    <div class="page-header float-left">
+        <div class="page-title">
+            <ol class="breadcrumb text-right">
+                <li><a asp-area="Admin" asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                <li><a asp-area="Admin" asp-controller="AdminProducts" asp-action="Index">Danh sách sản phẩm</a></li>
+                <li class="active">Xóa sản phẩm</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<div class="card-body">
+    <strong class="card-title">Xóa sản phẩm</strong>
+    <table id="bootstrap-data-table" class="table">
+        <tbody>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.ProductName)</td>
+                <td>@Html.DisplayFor(model => model.ProductName)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Description)</td>
+                <td>@Html.DisplayFor(model => model.Description)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Price)</td>
+                <td>@Html.DisplayFor(model => model.Price)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Discount)</td>
+                <td>@Html.DisplayFor(model => model.Discount)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Thumb)</td>
+                <td>@Html.DisplayFor(model => model.Thumb)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.DateCreated)</td>
+                <td>@Html.DisplayFor(model => model.DateCreated)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.DateModified)</td>
+                <td>@Html.DisplayFor(model => model.DateModified)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.BestSellers)</td>
+                <td>@Html.DisplayFor(model => model.BestSellers)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.HomeFlag)</td>
+                <td>@Html.DisplayFor(model => model.HomeFlag)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Active)</td>
+                <td>@Html.DisplayFor(model => model.Active)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Tags)</td>
+                <td>@Html.DisplayFor(model => model.Tags)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Title)</td>
+                <td>@Html.DisplayFor(model => model.Title)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Alias)</td>
+                <td>@Html.DisplayFor(model => model.Alias)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.UnitsInStock)</td>
+                <td>@Html.DisplayFor(model => model.UnitsInStock)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Cat)</td>
+                <td>@Html.DisplayFor(model => model.Cat.CatId)</td>
+            </tr>
+            <tr>
+                <td>Xác nhận xóa</td>
+                <td>
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="ProductId" />
+                        <input type="submit" value="Delete" class="btn btn-danger" />
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a asp-action="Index">Back to List</a>
+</div>

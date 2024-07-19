@@ -1,0 +1,61 @@
+﻿@model IEnumerable<TechShop.Models.TinTuc> 
+
+@{
+    ViewData["Title"] = "Tin tức";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="bg-light">
+    <div class="container py-5">
+        <div class="row text-center py-3">
+            <div class="col-lg-6 m-auto">
+                <h1 class="h1">News</h1>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                string url = Url.RouteUrl("NewsDetail", new { Alias = item.Alias, id = item.PostId }); ;
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100">
+                        <a href="@url">
+                            <img src="~/images/news/@item.Thumb" class="card-img-top" >
+                        </a>
+                        <div class="card-body">
+                            <a href="@url" class="h2 text-decoration-none text-dark">@item.Title</a>
+                            <p class="text-muted">Views (@item.Views)</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <!-- Pagination -->
+        <div class="row">
+            <div class="col-12">
+                <nav>
+                    <ul class="pagination justify-content-center">
+                        @if ((int)ViewData["CurrentPage"] >= 1)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("Index", new { page = (int)ViewData["CurrentPage"] - 1 })">Previous</a>
+                            </li>
+                        }
+                        @for (int i = 1; i <= (int)ViewData["TotalPages"]; i++)
+                        {
+                            <li class="page-item @(i == (int)ViewData["CurrentPage"] ? "active" : "")">
+                                <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+                            </li>
+                        }
+                        @if ((int)ViewData["CurrentPage"] < (int)ViewData["TotalPages"])
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("Index", new { page = (int)ViewData["CurrentPage"] + 1 })">Next</a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>

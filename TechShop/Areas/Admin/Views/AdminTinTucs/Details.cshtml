@@ -1,0 +1,73 @@
+﻿@model TechShop.Models.TinTuc
+
+@{
+    ViewData["Title"] = "Thông tin tin tức";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row m-0">
+    <div class="page-header float-left">
+        <div class="page-title">
+            <ol class="breadcrumb text-right">
+                <li><a asp-area="Admin" asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                <li><a asp-area="Admin" asp-controller="AdminTinTucs" asp-action="Index">Danh sách tin tức</a></li>
+                <li class="active">Thông tin tin tức</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+
+<div class="card-body">
+    <strong class="card-title">Thông tin tin tức</strong>
+    <table id="bootstrap-data-table" class="table">
+        <tbody>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Title)</td>
+                <td>@Html.DisplayFor(model => model.Title)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Contents)</td>
+                <td>@Html.DisplayFor(model => model.Contents)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Thumb)</td>
+                <td>@Html.DisplayFor(model => model.Thumb)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Published)</td>
+                <td>@Html.DisplayFor(model => model.Published)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Alias)</td>
+                <td>@Html.DisplayFor(model => model.Alias)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.CreatedDate)</td>
+                <td>@Html.DisplayFor(model => model.CreatedDate)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Author)</td>
+                <td>@Html.DisplayFor(model => model.Author)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Tags)</td>
+                <td>@Html.DisplayFor(model => model.Tags)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.IsHot)</td>
+                <td>@Html.DisplayFor(model => model.IsHot)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.IsNewfeed)</td>
+                <td>@Html.DisplayFor(model => model.IsNewfeed)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Views)</td>
+                <td>@Html.DisplayFor(model => model.Views)</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

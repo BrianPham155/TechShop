@@ -1,0 +1,69 @@
+﻿@model TechShop.ModelViews.LoginViewModel
+@{
+    ViewData["Title"] = "Đăng Nhập";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<partial name="_Notifycation" />
+<style>
+    body {
+        background-color: #f8f9fa; /* Màu nền chung */
+    }
+
+    .login-register-area {
+        background-color: #f8f9fa; /* Màu nền khu vực chứa form */
+        padding: 100px 0;
+    }
+
+    .login-form {
+        padding: 20px;
+    }
+
+    .login-title {
+        margin-bottom: 20px;
+        text-align: center; /* Căn giữa tiêu đề */
+    }
+
+    .form-control {
+        margin-bottom: 15px;
+        border: 1px solid #ced4da; /* Kẻ viền cho khung text */
+        border-radius: 0.25rem; /* Bo góc viền */
+    }
+
+    .btn-custom-size {
+        width: 100%;
+    }
+</style>
+
+<main class="main-content">
+    <div class="login-register-area section-space-y-axis-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 pt-10 pt-lg-0">
+                    <form asp-action="Login" method="post" class="bg-light p-4 rounded shadow">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="login-form">
+                            <h4 class="login-title">Đăng nhập</h4>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Địa chỉ Email</label>
+                                    <input type="text" asp-for="UserName" placeholder="Địa chỉ Email" class="form-control">
+                                    <span asp-validation-for="UserName" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Mật khẩu</label>
+                                    <input type="password" asp-for="Password" placeholder="Mật khẩu" class="form-control">
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                                <div class="col-12 mt-3">
+                                    <button class="btn btn-success w-100 py-2">Đăng nhập</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+

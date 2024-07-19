@@ -1,0 +1,121 @@
+﻿@model IEnumerable<TechShop.Models.Product>
+
+@{
+    Category category = ViewBag.CurrentCategory;  
+    ViewData["Title"] = category.CatName;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Start Content -->
+<div class="container py-5">
+    <div class="row">
+
+        <div class="col-lg-3">
+            <h1 class="h2 pb-4">Categories</h1>
+            <ul class="list-unstyled templatemo-accordion">
+                <li class="pb-3">
+                    <a class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-controller="Products" asp-action="Index">
+                        Tất cả
+                    </a>
+                </li>
+                <li class="pb-3">
+                    <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="@Url.RouteUrl("ListProducts", new { Alias = "laptop" })">
+                        Laptop
+                    </a>
+                </li>
+                <li class="pb-3">
+                    <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="@Url.RouteUrl("ListProducts", new { Alias = "chuot" })">
+                        Chuột
+                    </a>
+                </li>
+                <li class="pb-3">
+                    <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="@Url.RouteUrl("ListProducts", new { Alias = "ban-phim" })">
+                        Bàn Phím
+                    </a>
+                </li>
+                <li class="pb-3">
+                    <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="@Url.RouteUrl("ListProducts", new { Alias = "man-hinh" })">
+                        Màn Hình
+                    </a>
+                </li>
+                <li class="pb-3">
+                    <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="@Url.RouteUrl("ListProducts", new { Alias = "tai-nghe" })">
+                        Tai Nghe
+                    </a>
+                </li>
+                <li class="pb-3">
+                    <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="@Url.RouteUrl("ListProducts", new { Alias = "ghe-gaming" })">
+                        Ghế Gaming
+                    </a>
+                </li>
+                <li class="pb-3">
+                    <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="@Url.RouteUrl("ListProducts", new { Alias = "pc" })">
+                        PC
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-lg-9">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    string url = Url.RouteUrl("ProductsDetail", new { Alias = item.Alias, id = item.ProductId }); ;
+                    <div class="col-md-4">
+                        <div class="card mb-4 product-wap rounded-0">
+                            <div class="card rounded-0">
+                                <img class="card-img img-fluid mx-auto d-block" src="~/images/product/@item.Thumb" style="max-width: 100%; max-height: 100%;">
+                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                    <ul class="list-unstyled">
+                                        <li><a class="btn btn-success text-white mt-2" href="@url"><i class="far fa-eye"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <a href="@url" class="h2 text-decoration-none">@item.ProductName</a>
+                                <p class="py-2">
+                                    <i class="fa fa-star text-warning"></i>
+                                    <i class="fa fa-star text-warning"></i>
+                                    <i class="fa fa-star text-warning"></i>
+                                    <i class="fa fa-star text-warning"></i>
+                                    <i class="fa fa-star text-secondary"></i>
+                                    <span class="list-inline-item text-dark">Rating 4.0</span>
+                                </p>
+                                <p class="mb-0">@item.Price.Value.ToString("#,##0") VNĐ</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!-- Pagination -->
+            <div class="row">
+                <div class="col-12">
+                    <nav>
+                        <ul class="pagination justify-content-center">
+                            @if ((int)ViewData["CurrentPage"] >= 1)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="@Url.Action("Index", new { page = (int)ViewData["CurrentPage"] - 1 })">Previous</a>
+                                </li>
+                            }
+                            @for (int i = 1; i <= (int)ViewData["TotalPages"]; i++)
+                            {
+                                <li class="page-item @(i == (int)ViewData["CurrentPage"] ? "active" : "")">
+                                    <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+                                </li>
+                            }
+                            @if ((int)ViewData["CurrentPage"] < (int)ViewData["TotalPages"])
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="@Url.Action("Index", new { page = (int)ViewData["CurrentPage"] + 1 })">Next</a>
+                                </li>
+                            }
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- End Content -->

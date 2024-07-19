@@ -1,0 +1,40 @@
+﻿<aside id="left-panel" class="left-panel">
+    <nav class="navbar navbar-expand-sm navbar-default">
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a asp-area="Admin" asp-controller="Home" asp-action="Index"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+                </li>
+                <li class="menu-title">Admin</li><!-- /.menu-title -->
+
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>Quản lí tài khoản</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-table"></i><a asp-area="Admin" asp-controller="AdminRoles" asp-action="Index">Quản lí quyền truy cập</a></li>
+                        <li><i class="fa fa-table"></i><a asp-area="Admin" asp-controller="AdminAccounts" asp-action="Index">Quản lí tài khoản</a></li>
+                    </ul>
+                </li>
+                <li class="menu-title">Sản Phẩm</li><!-- /.menu-title -->
+                <li>
+                    <a asp-area="Admin" asp-controller="AdminProducts" asp-action="Index"> <i class="menu-icon ti-shopping-cart"></i> Quản lí sản phẩm </a>
+                </li>
+                <li>
+                    <a asp-area="Admin" asp-controller="AdminCategories" asp-action="Index"> <i class="menu-icon ti-receipt"></i> Quản lí danh mục </a>
+                </li>
+                <li>
+                    <a asp-area="Admin" asp-controller="AdminOrders" asp-action="Index"> <i class="menu-icon ti-receipt"></i> Quản lí đơn hàng </a>
+                </li>
+                <li class="menu-title">Khách Hàng</li><!-- /.menu-title -->
+
+                <li>
+                    <a asp-area="Admin" asp-controller="AdminCustomers" asp-action="Index"> <i class="menu-icon fa fa-user"></i>Quản lí khách hàng</a>
+                </li>
+
+                <li class="menu-title">Tin Tức</li><!-- /.menu-title -->
+                <li>
+                    <a asp-area="Admin" asp-controller="AdminTintucs" asp-action="Index"> <i class="menu-icon ti-announcement"></i> Quản lí tin tức </a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+</aside>

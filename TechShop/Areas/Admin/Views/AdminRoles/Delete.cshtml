@@ -1,0 +1,50 @@
+﻿@model TechShop.Models.Role
+
+@{
+    ViewData["Title"] = "Xóa quyền truy cập";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row m-0">
+    <div class="page-header float-left">
+        <div class="page-title">
+            <ol class="breadcrumb text-right">
+                <li><a asp-area="Admin" asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                <li><a asp-area="Admin" asp-controller="AdminRoles" asp-action="Index">Danh sách quyền truy cập</a></li>
+                <li class="active">Xóa quyền truy cập</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+
+<div class="card-body">
+    <strong class="card-title">Xóa quyền truy cập</strong>
+    <table id="bootstrap-data-table" class="table">
+        <tbody>
+            <tr>
+                <td>ID</td>
+                <td>@Model.RoleId</td>
+            </tr>
+            <tr>
+                <td>Tên</td>
+                <td>@Model.RoleName</td>
+            </tr>
+            <tr>
+                <td>Mô Tả</td>
+                <td>@Model.Description</td>
+            </tr>
+            <tr>
+                <td>Xác nhận xóa</td>
+                <td>
+                    <form asp-action="Delete" asp-route-id="@Model.RoleId">
+                        <input type="hidden" asp-for="RoleId" />
+                        <input type="submit" value="Xác nhận xóa" class="btn btn-danger" />
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+    <a asp-action="Index">Back to List</a>
+</div>
